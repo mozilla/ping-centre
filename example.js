@@ -10,11 +10,11 @@
  * });
  */
 
-const apiKey = process.env.PING_CENTRE_KEY;
+const topic = process.env.PING_CENTRE_TOPIC;
 const PingCentre = require('ping-centre');
-const pingClient = new PingCentre(apiKey, "clientID");
+const pingClient = new PingCentre(topic, "clientID", "https://onyx_tiles.stage.mozaws.net/v3/links/activity-stream");
 
 pingClient.sendPing({
-  type: "search",
+  event_type: "search",
   value: 3
 });
