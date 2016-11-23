@@ -4,7 +4,7 @@
   "description": "A client for easily collecting events and metrics.",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "make test"
   },
   "repository": {
     "type": "git",
@@ -17,14 +17,14 @@
   },
   "homepage": "https://github.com/emtwo/ping-centre#readme",
   "dependencies": {
-    "node-fetch": "^1.6.3"
+    "isomorphic-fetch": "^2.2.1",
+    "joi": "^10.0.1",
+    "node-fetch": "^1.6.3",
+    "uuid": "^3.0.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "mocha": "^3.1.2",
-    "sinon": "^1.17.6"
-  },
-  "scripts": {
-    "test": "make test"
+    "fetch-mock": "^5.5.0",
+    "mocha": "^3.1.2"
   }
 }
