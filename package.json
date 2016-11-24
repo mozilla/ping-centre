@@ -2,7 +2,7 @@
   "name": "ping-centre",
   "version": "0.1.0",
   "description": "A client for easily collecting events and metrics.",
-  "main": "main.js",
+  "main": "ping-centre.js",
   "scripts": {
     "test": "make test"
   },
