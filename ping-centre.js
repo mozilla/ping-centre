@@ -16,19 +16,13 @@ class PingCentre {
     this._clientID = clientID || uuid();
     this._schema = schema || commonSchema;
     this._pingEndpoint = pingEndpoint || PING_ENDPOINT;
-    this._resetDataObject();
-  }
-
-  _resetDataObject() {
-    this._data = {
-      topic: this._topic,
-      client_id: this._clientID
-    };
   }
 
   sendPing(data) {
-    let payload = Object.assign(this._data, data);
-    this._resetDataObject();
+    let payload = Object.assign({
+      topic: this._topic,
+      client_id: this._clientID
+    }, data);
 
     Joi.validate(payload, this._schema, function (err, value) {
       if (err) {
