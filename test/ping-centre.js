@@ -2,7 +2,7 @@
 
 const fetchMock = require('fetch-mock');
 const assert = require("chai").assert;
-let PingCentre = require('../main');
+let PingCentre = require('../ping-centre');
 
 const topic = "testpilot_server";
 const pingClient = new PingCentre(topic);
