@@ -1,52 +1,56 @@
 "use strict";
 
 const fetchMock = require('fetch-mock');
-const assert = require("chai").assert;
 let PingCentre = require('../ping-centre');
 
 const topic = "testpilot_server";
-const pingClient = new PingCentre(topic);
+let pingClient = new PingCentre(topic);
 
 describe('Ping Centre Throws', function() {
-  it('throws if topic is is empty', function() {
+  it('throws if topic is empty', function() {
     assert.throws(() => new PingCentre("", "clientID"));
   });
-  it('throws if data is undefined', function() {
-    assert.throws(() => pingClient.sendPing());
+});
+
+describe('Joi Handles Various Cases', function() {
+  it("rejects undefined data", function(done) {
+    fetchMock.mock('*', {});
+    let promise = pingClient.sendPing();
+    promise.should.be.rejected.notify(done);
   });
-  it('throws if data is not an object', function() {
-    assert.throws(() => pingClient.sendPing(45));
+  it("rejects if data is not an object", function(done) {
+    fetchMock.mock('*', {});
+    pingClient.sendPing(45).should.be.rejected.notify(done);
   });
-  it('throws if data is an empty object', function() {
-    assert.throws(() => pingClient.sendPing({}));
+  it("rejects if data is an empty object", function(done) {
+    fetchMock.mock('*', {});
+    pingClient.sendPing({}).should.be.rejected.notify(done);
   });
 });
 
 describe('Ping Centre Common Properties', function() {
-  it('has the expected common properties', function() {
+  it('has the expected common properties', function(done) {
     fetchMock.mock('*', {});
 
     let event_type = "testpilot.test-install"
     pingClient.sendPing({
       event_type: event_type,
+    }).then(result => {
+      assert.equal(fetchMock.lastOptions("*").body.topic, topic, "topic exists in payload");
+      assert.isNotNull(fetchMock.lastOptions("*").body.client_id, "client_id exists in payload");
+      assert.equal(fetchMock.lastOptions("*").body.event_type, event_type, "event_type exists in payload");
+
+      fetchMock.restore();
+      done();
     });
-
-    assert.equal(fetchMock.lastOptions("*").body.topic, topic, "topic exists in payload");
-    assert.isNotNull(fetchMock.lastOptions("*").body.client_id, "client_id exists in payload");
-    assert.equal(fetchMock.lastOptions("*").body.event_type, event_type, "event_type exists in payload");
-
-    fetchMock.restore();
   });
-  it('does not throw when additional fields exist', function() {
+  it('does not throw when additional fields exist', function(done) {
     fetchMock.mock('*', {});
-
-    assert.doesNotThrow(() => {
-      return pingClient.sendPing({
-        event_type: "test",
-        additional_field: "shouldn't throw"
-      });
-    });
-
+    pingClient = new PingCentre(topic, null, "http://www.test.com");
+    pingClient.sendPing({
+      event_type: "test",
+      additional_field: "shouldn't throw"
+    }).should.be.fulfilled.notify(done);
     fetchMock.restore();
   });
 });
