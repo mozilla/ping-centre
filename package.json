@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/emtwo/ping-centre#readme",
   "dependencies": {
+    "chai-as-promised": "^6.0.0",
     "isomorphic-fetch": "^2.2.1",
     "joi": "^10.0.1",
     "node-fetch": "^1.6.3",
