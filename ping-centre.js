@@ -45,7 +45,7 @@ class PingCentre {
         }
       })
     }).catch(e => {
-      console.error(`Ping failure with error code: ${e.message}`);
+      console.error(e.message);
       throw e;
     });
   }
