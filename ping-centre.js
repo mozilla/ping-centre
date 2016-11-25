@@ -1,9 +1,9 @@
 "use strict";
 
-require('isomorphic-fetch');
-const commonSchema = require('./schemas/commonSchema');
-const Joi = require('joi');
-const uuid = require('uuid');
+require("isomorphic-fetch");
+const commonSchema = require("./schemas/commonSchema");
+const Joi = require("joi");
+const uuid = require("uuid");
 
 const PING_ENDPOINT = "";
 
@@ -12,7 +12,7 @@ class PingCentre {
     if (!topic) {
       throw new Error("Must specify topic.");
     }
-    this._topic = topic
+    this._topic = topic;
     this._clientID = clientID || uuid();
     this._schema = schema || commonSchema;
     this._pingEndpoint = pingEndpoint || PING_ENDPOINT;
@@ -31,7 +31,7 @@ class PingCentre {
   }
 
   sendPing(data) {
-    let payload = Object.assign({
+    const payload = Object.assign({
       topic: this._topic,
       client_id: this._clientID
     }, data);
@@ -43,7 +43,7 @@ class PingCentre {
         } else {
           return response;
         }
-      })
+      });
     }).catch(e => {
       console.error(e.message);
       throw e;

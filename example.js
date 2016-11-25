@@ -11,7 +11,7 @@
  */
 
 const topic = process.env.PING_CENTRE_TOPIC;
-const PingCentre = require('ping-centre');
+const PingCentre = require("ping-centre");
 const pingClient = new PingCentre(topic, "clientID", "https://onyx_tiles.stage.mozaws.net/v3/links/activity-stream");
 
 pingClient.sendPing({

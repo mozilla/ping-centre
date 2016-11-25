@@ -1,28 +1,29 @@
+/* global assert */
 "use strict";
 
-const fetchMock = require('fetch-mock');
-let PingCentre = require('../ping-centre');
+const fetchMock = require("fetch-mock");
+const PingCentre = require("../ping-centre");
 
 const topic = "testpilot_server";
 let pingClient = new PingCentre(topic);
 
 before(() => {
-  fetchMock.mock('*', {});
+  fetchMock.mock("*", {});
 });
 
 after(() => {
   fetchMock.restore();
 });
 
-describe('Ping Centre Throws', function() {
-  it('throws if topic is empty', function() {
+describe("Ping Centre Throws", function() {
+  it("throws if topic is empty", function() {
     assert.throws(() => new PingCentre("", "clientID"));
   });
 });
 
-describe('Joi Handles Various Cases', function() {
+describe("Joi Handles Various Cases", function() {
   it("rejects undefined data", function(done) {
-    let promise = pingClient.sendPing();
+    const promise = pingClient.sendPing();
     promise.should.be.rejected.notify(done);
   });
   it("rejects if data is not an object", function(done) {
@@ -33,10 +34,9 @@ describe('Joi Handles Various Cases', function() {
   });
 });
 
-describe('Ping Centre Common Properties', function() {
-  it('has the expected common properties', function(done) {
-
-    let event_type = "testpilot.test-install"
+describe("Ping Centre Common Properties", function() {
+  it("has the expected common properties", function(done) {
+    const event_type = "testpilot.test-install";
     pingClient.sendPing({
       event_type: event_type,
     }).then(result => {
@@ -47,7 +47,7 @@ describe('Ping Centre Common Properties', function() {
       done();
     });
   });
-  it('does not throw when additional fields exist', function(done) {
+  it("does not throw when additional fields exist", function(done) {
     pingClient = new PingCentre(topic, null, "http://www.test.com");
     pingClient.sendPing({
       event_type: "test",
@@ -56,10 +56,10 @@ describe('Ping Centre Common Properties', function() {
   });
 });
 
-describe('Ping Centre Handles Server Errors', function() {
+describe("Ping Centre Handles Server Errors", function() {
   it("handles 400 error", function(done) {
     fetchMock.restore();
-    fetchMock.mock('*', 400);
+    fetchMock.mock("*", 400);
     pingClient.sendPing({
       event_type: "test",
       additional_field: "should reject"
