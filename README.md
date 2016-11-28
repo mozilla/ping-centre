@@ -21,7 +21,7 @@ const payload = makePayload();
 // send the payload asynchronously
 pc.sendPing(payload);
 
-// validate the payload only
+// validate the payload asynchronously
 pc.validate(payload);
 ```
 
@@ -35,7 +35,7 @@ data pipeline employes a [Disco][Disco Homepage] cluster to run the ETL jobs, wh
 in turn persist the outcome to AWS Redshift. Through [re:dash dashboard][Re:dash Dashboard],
 the user can access the data warehouse, slice and dice the datasets via SQL queries.
 
-Behind the scene, a ping-centre client is simply a wrapper around the HTTP POST request.
+Behind the scenes, a ping-centre client is simply a wrapper around the HTTP POST request.
 Therefore, it could be implemented in any programming language. And this repo implements
 it in Javascript.
 
