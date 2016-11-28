@@ -8,14 +8,16 @@ const uuid = require("uuid");
 const PING_ENDPOINT = "";
 
 class PingCentre {
-  constructor(topic, clientID, pingEndpoint, schema) {
+  constructor(topic, clientID, pingEndpoint) {
     if (!topic) {
       throw new Error("Must specify topic.");
     }
     this._topic = topic;
     this._clientID = clientID || uuid();
-    this._schema = schema || commonSchema;
     this._pingEndpoint = pingEndpoint || PING_ENDPOINT;
+
+    const schema = require(`./schemas/${topic}`);
+    this._schema = schema || commonSchema;
   }
 
   validate(payload) {
