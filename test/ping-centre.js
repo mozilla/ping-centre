@@ -44,7 +44,6 @@ describe("Ping Centre Common Properties", function() {
       assert.equal(fetchMock.lastOptions("*").body.topic, topic, "topic exists in payload");
       assert.isNotNull(fetchMock.lastOptions("*").body.client_id, "client_id exists in payload");
       assert.equal(fetchMock.lastOptions("*").body.event_type, event_type, "event_type exists in payload");
-
       done();
     });
   });
@@ -55,6 +54,12 @@ describe("Ping Centre Common Properties", function() {
       value: true,
       additional_field: "shouldn't throw"
     }).should.be.fulfilled.notify(done);
+  });
+});
+
+describe("Validation handling", function() {
+  it("Invalid data is passed when validation is turned off", function(done) {
+    pingClient.sendPing({}, false).should.be.fulfilled.notify(done);
   });
 });
 
