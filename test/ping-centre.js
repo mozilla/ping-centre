@@ -4,7 +4,7 @@
 const fetchMock = require("fetch-mock");
 const PingCentre = require("../ping-centre");
 
-const topic = "testpilot_server";
+const topic = "sample";
 let pingClient = new PingCentre(topic);
 
 before(() => {
@@ -39,6 +39,7 @@ describe("Ping Centre Common Properties", function() {
     const event_type = "testpilot.test-install";
     pingClient.sendPing({
       event_type: event_type,
+      value: true,
     }).then(result => {
       assert.equal(fetchMock.lastOptions("*").body.topic, topic, "topic exists in payload");
       assert.isNotNull(fetchMock.lastOptions("*").body.client_id, "client_id exists in payload");
@@ -51,6 +52,7 @@ describe("Ping Centre Common Properties", function() {
     pingClient = new PingCentre(topic, null, "http://www.test.com");
     pingClient.sendPing({
       event_type: "test",
+      value: true,
       additional_field: "shouldn't throw"
     }).should.be.fulfilled.notify(done);
   });
@@ -62,6 +64,7 @@ describe("Ping Centre Handles Server Errors", function() {
     fetchMock.mock("*", 400);
     pingClient.sendPing({
       event_type: "test",
+      value: true,
       additional_field: "should reject"
     }).should.be.rejected.notify(done);
   });
