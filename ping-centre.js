@@ -32,13 +32,18 @@ class PingCentre {
     });
   }
 
-  sendPing(data) {
+  sendPing(data, validate = true) {
     const payload = Object.assign({
       topic: this._topic,
       client_id: this._clientID
     }, data);
 
-    return this.validate(payload).then(() => {
+    let validatePromise = Promise.resolve();
+    if (validate) {
+      validatePromise = this.validate(payload);
+    }
+
+    return validatePromise.then(() => {
       return fetch(this._pingEndpoint, {method: "POST", body: payload}).then(response => {
         if (!response.ok) {
           throw new Error(`Ping failure with response code: ${response.status}`);
