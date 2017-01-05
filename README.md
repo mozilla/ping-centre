@@ -25,6 +25,9 @@ pc.sendPing(payload);
 pc.validate(payload);
 ```
 
+When testing your app with Ping Centre, your data will be sent to a staging server by default.
+To send your data to a production server, set the `NODE_ENV` environment variable to `production`.
+
 # Overview
 
 Ping-centre consists of three main parts: the clients, the data pipeline, and the dashboard.
