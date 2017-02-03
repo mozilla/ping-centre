@@ -2,7 +2,7 @@
 
 require("isomorphic-fetch");
 const commonSchema = require("./schemas/commonSchema");
-const Joi = require("joi");
+const Joi = require("joi-browser");
 const uuid = require("uuid");
 const config = require("./config");
 

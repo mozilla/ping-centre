@@ -1,7 +1,7 @@
 /* global expect */
 "use strict";
 
-const Joi = require("joi");
+const Joi = require("joi-browser");
 const PingCentre = require("../../ping-centre");
 const schema = require("../../schemas/testpilottest.js");
 

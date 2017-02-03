@@ -1,6 +1,6 @@
 "use strict";
 
-const Joi = require("joi");
+const Joi = require("joi-browser");
 
 const schema = Joi.object().keys({
   client_id: Joi.string().required(),
