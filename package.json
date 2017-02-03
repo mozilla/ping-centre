@@ -1,6 +1,6 @@
 {
   "name": "ping-centre",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "A client for easily collecting events and metrics.",
   "main": "ping-centre.js",
   "license": "MPL-2.0",
