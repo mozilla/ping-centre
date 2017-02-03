@@ -57,7 +57,7 @@ As the reference of table schema in Redshift, this schema could also be used by 
 ETL jobs to conduct the data extraction, cleaning, and transforming.
 
 
-We use [Joi][Joi Homepage] to define the schemas for the Javascript client. By convention, all
+We use [joi-browser][Joi-browser Homepage] to define the schemas for the Javascript client. By convention, all
 schemas are saved in the `schemas` directory with the same name of the topics. In each schema,
 the user specifies following attributes in the schema for each topic:
 
@@ -73,7 +73,7 @@ the user specifies following attributes in the schema for each topic:
 Here is an example:
 
 ```js
-const Joi = require("joi");
+const Joi = require("joi-browser");
 
 const schema = Joi.object().keys({
     // a required string field with no more than 128 characters
@@ -102,3 +102,4 @@ module.exports = schema;
 [Re:dash Dashboard]: https://sql.telemetry.mozilla.org/
 [Infernyx Homepage]: https://github.com/tspurway/infernyx
 [Joi Homepage]: https://github.com/hapijs/joi
+[Joi-browser Homepage]: https://github.com/jeffbski/joi-browser

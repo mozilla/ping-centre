@@ -1,6 +1,6 @@
 "use strict";
 
-const Joi = require("joi");
+const Joi = require("joi-browser");
 const commonSchema = require("./commonSchema");
 
 const testpilotEvent = Joi.object().keys({
