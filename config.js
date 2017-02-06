@@ -1,3 +1,5 @@
+"use strict";
+
 module.exports = {
   endpoint: process.env.NODE_ENV === "production" ?
     "https://tiles.services.mozilla.com/v3/links/ping-centre" :
