@@ -15,7 +15,7 @@ describe("Ping Centre Endpoints", function() {
     // required again in order to require config again and look up the
     // newly set environment variables.
     delete require.cache[require.resolve("../ping-centre")];
-    delete require.cache[require.resolve("config")];
+    delete require.cache[require.resolve("../config")];
 
     process.env["NODE_ENV"] = "production";
     const PingCentre = require("../ping-centre");

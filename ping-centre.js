@@ -4,7 +4,7 @@ require("isomorphic-fetch");
 const commonSchema = require("./schemas/commonSchema");
 const Joi = require("joi");
 const uuid = require("uuid");
-const config = require("config");
+const config = require("./config");
 
 class PingCentre {
   constructor(topic, clientID, pingEndpoint) {
@@ -13,7 +13,7 @@ class PingCentre {
     }
     this._topic = topic;
     this._clientID = clientID || uuid();
-    this._pingEndpoint = pingEndpoint || config.get("endpoint");
+    this._pingEndpoint = pingEndpoint || config.endpoint;
 
     const schema = require(`./schemas/${topic}`);
     this._schema = schema || commonSchema;
