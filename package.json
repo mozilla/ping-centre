@@ -2,19 +2,21 @@
   "name": "ping-centre",
   "version": "1.0.0",
   "description": "A client for easily collecting events and metrics.",
-  "main": "ping-centre.js",
+  "main": "src/ping-centre.js",
   "license": "MPL-2.0",
   "scripts": {
-    "test": "npm-run-all test:*",
-    "test:code": "make test",
-    "test:lint": "eslint ."
+    "bundle": "webpack",
+    "test": "npm run bundle && npm run test:node && npm run test:browser && npm run test:lint",
+    "test:node": "istanbul cover _mocha -- --recursive",
+    "test:browser": "karma start test/karma.conf.js",
+    "travis": "npm test && cat ./coverage/lcov.info | coveralls",
+    "test:lint": "eslint . --ext .js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mozilla/ping-centre.git"
   },
   "author": "Marina Samuel <msamuel@mozilla.com>",
-  "license": "MPL-2.0",
   "bugs": {
     "url": "https://github.com/mozilla/ping-centre/issues"
   },
@@ -22,14 +24,21 @@
   "dependencies": {
     "isomorphic-fetch": "^2.2.1",
     "joi-browser": "^10.0.6",
-    "uuid": "^3.0.0"
+    "uuid": "^3.0.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",
+    "coveralls": "^2.11.16",
     "eslint": "^3.12.2",
     "fetch-mock": "^5.5.0",
+    "istanbul": "^0.4.5",
+    "karma": "^1.4.1",
+    "karma-firefox-launcher": "^1.0.0",
+    "karma-mocha": "^1.3.0",
+    "karma-mocha-reporter": "^2.2.2",
+    "karma-webpack": "^2.0.2",
     "mocha": "^3.1.2",
-    "npm-run-all": "^3.1.1"
+    "webpack": "^2.2.1"
   }
 }
