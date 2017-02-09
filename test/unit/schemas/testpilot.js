@@ -2,8 +2,8 @@
 "use strict";
 
 const Joi = require("joi-browser");
-const PingCentre = require("../../ping-centre");
-const testPilotSchema = require("../../schemas/testpilot.js");
+const PingCentre = require("../../../src/ping-centre");
+const testPilotSchema = require("../../../src/schemas/testpilot.js");
 
 const samplePing = {
   topic: "testpilot",

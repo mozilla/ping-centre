@@ -2,7 +2,7 @@
 "use strict";
 
 const fetchMock = require("fetch-mock");
-const PingCentre = require("../ping-centre");
+const PingCentre = require("../../src/ping-centre");
 
 const topic = "sample";
 let pingClient = new PingCentre(topic);
