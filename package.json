@@ -5,7 +5,7 @@
   "main": "src/ping-centre.js",
   "license": "MPL-2.0",
   "scripts": {
-    "bundle": "webpack",
+    "bundle": "webpack -p",
     "test": "npm run bundle && npm run test:node && npm run test:browser && npm run test:lint",
     "test:node": "istanbul cover _mocha -- --recursive",
     "test:browser": "karma start test/karma.conf.js",
@@ -27,6 +27,11 @@
     "uuid": "^3.0.1"
   },
   "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-core": "^6.22.1",
+    "babel-loader": "^6.2.10",
+    "babel-polyfill": "^6.22.0",
+    "babel-preset-es2015": "^6.22.0",
     "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",
     "coveralls": "^2.11.16",
@@ -39,6 +44,6 @@
     "karma-mocha-reporter": "^2.2.2",
     "karma-webpack": "^2.0.2",
     "mocha": "^3.1.2",
-    "webpack": "^2.2.1"
+    "webpack": "^1.14.0"
   }
 }
