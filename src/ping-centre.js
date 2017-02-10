@@ -55,5 +55,5 @@ class PingCentre {
       throw e;
     });
   }
-};
+}
 module.exports = PingCentre;
