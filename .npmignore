@@ -1,5 +1,4 @@
 .eslintrc
-Makefile
 README.md
 example.js
 test/
