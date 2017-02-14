@@ -57,6 +57,28 @@ describe("Ping Centre Common Properties", function() {
   });
 });
 
+describe("Setting Global Fetch", function() {
+  it("uses isomorphic fetch by default", function() {
+    assert.equal(typeof platform_require, "undefined", "platform_require is not defined by default");
+    assert.equal(typeof fetch, "function");
+  });
+  it("when platform_require is defined, we don't use isomorphic fetch", function() {
+    const tmp = global.fetch;
+    global.platform_require = function() {
+      return {Cu: {
+        importGlobalProperties: function() {
+          console.log("do things");
+          global.fetch = {};
+        }}
+      };
+    };
+    pingClient = new PingCentre(topic);
+    assert.equal(typeof platform_require, "function", "platform_require is now set");
+    assert.equal(typeof fetch, "object");
+    global.fetch = tmp;
+  });
+});
+
 describe("Validation handling", function() {
   it("Invalid data is passed when validation is turned off", function(done) {
     pingClient.sendPing({}, false).should.be.fulfilled.notify(done);
