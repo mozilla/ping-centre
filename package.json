@@ -22,7 +22,6 @@
   "dependencies": {
     "isomorphic-fetch": "^2.2.1",
     "joi-browser": "^10.0.6",
-    "node-fetch": "^1.6.3",
     "uuid": "^3.0.0"
   },
   "devDependencies": {
