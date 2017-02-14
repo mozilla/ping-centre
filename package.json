@@ -5,7 +5,7 @@
   "main": "src/ping-centre.js",
   "license": "MPL-2.0",
   "scripts": {
-    "bundle": "webpack -p",
+    "bundle": "webpack -p && webpack -p --config webpack.addon.config.js",
     "test": "npm run bundle && npm run test:node && npm run test:browser && npm run test:lint",
     "test:node": "istanbul cover _mocha -- --recursive",
     "test:browser": "karma start test/karma.conf.js",
