@@ -1,6 +1,6 @@
+/*global platform_require*/
 "use strict";
 
-require("isomorphic-fetch");
 const commonSchema = require("./schemas/commonSchema");
 const Joi = require("joi-browser");
 const uuid = require("uuid");
@@ -17,6 +17,16 @@ class PingCentre {
 
     const schema = require(`./schemas/${topic}`);
     this._schema = schema || commonSchema;
+    this._setGlobalFetch();
+  }
+
+  _setGlobalFetch() {
+    if (typeof platform_require !== "undefined") {
+      // If we're in Firefox Addon land, import fetch this way.
+      platform_require("chrome").Cu.importGlobalProperties(["fetch"]);
+      return;
+    }
+    require("isomorphic-fetch");
   }
 
   validate(payload) {
