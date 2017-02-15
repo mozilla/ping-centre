@@ -12,9 +12,27 @@ $ npm install ping-centre
 
 # Usage
 
-```js
-const PingCentre = require("ping-centre");
+## Node
 
+1. `npm install ping-centre --save` to get the ping-centre dependencies
+2. Import as follows: `const PingCentre = require("ping-centre");`
+
+## Firefox Addon
+
+1. Run npm run bundle to output bundles to `dist/`
+2. Place the `ping-centre.addon.min.js` bundle in the addon directory
+3. Import as follows: `const PingCentre = require("./ping-centre.addon.min");`
+
+## Browser
+
+1. Run npm run bundle to output bundles to `dist/`
+2. Place the `ping-centre.min.js` bundle in your project directory
+3. Import as follows: `<script type="text/javascript" src="ping-centre.min.js" charset="utf-8"></script>`
+4. `PingCentre` will be available as a global
+
+From there, the following code can be executed in any environment:
+
+```js
 // create a ping-centre object
 const pc = new PingCentre("some_topic_foo", "some_cient_id_123");
 

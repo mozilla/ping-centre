@@ -5,7 +5,7 @@ const webpack = require("webpack");
 module.exports = {
   entry: "./src/ping-centre.js",
   output: {
-    path: "./dist",
+    path: "/dist",
     filename: "ping-centre.addon.min.js",
     libraryTarget: "commonjs2",
     library: "PingCentre"

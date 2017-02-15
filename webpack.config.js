@@ -3,7 +3,7 @@
 module.exports = {
   entry: "./src/ping-centre.js",
   output: {
-    path: "./dist",
+    path: "/dist",
     filename: "ping-centre.min.js",
     library: "PingCentre"
   },
