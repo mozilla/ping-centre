@@ -1,5 +1,8 @@
 # ping-centre
 
+[![Build Status](https://travis-ci.org/mozilla/ping-centre.svg?branch=master)](https://travis-ci.org/mozilla/ping-centre)
+[![Coverage Status](https://coveralls.io/repos/github/mozilla/ping-centre/badge.svg?branch=master)](https://coveralls.io/github/mozilla/ping-centre?branch=master)
+
 A client for easily collecting events and metrics.
 
 # Install
