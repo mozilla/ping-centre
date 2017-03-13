@@ -16,28 +16,7 @@ const samplePing = {
   addon_version: "0.9.4",
   os_name: "Darwin",
   os_version: "16.0.0",
-  locale: "en-US",
-  raw: JSON.stringify({
-    type: "testpilot",
-    id: "20076a92-360c-da4d-9742-8327848c5070",
-    creationDate: "2016-11-30T22:46:57.230Z",
-    version: 4,
-    payload: {
-      timestamp: 483,
-      test: "@testpilot-addon",
-      version: "0.9.1-dev-e42d9cb",
-      events: [{
-        timestamp: 483,
-        event: "clicked",
-        object: "txp_toolbar_menu_1"
-      }]
-    },
-    clientId: "729e4a78-df2e-c347-ba29-18f34e5d5759",
-    // To keep the sample ping reasonably small, I've replaced the deeply nested
-    // application and environment properties with empty objects.
-    application: {},
-    environment: {}
-  })
+  locale: "en-US"
 };
 
 function clone(x) {
@@ -45,7 +24,7 @@ function clone(x) {
 }
 
 const requiredStrings = ["topic", "client_time", "firefox_version", "locale",
-  "addon_id", "addon_version", "os_name", "os_version", "raw"];
+  "addon_id", "addon_version", "os_name", "os_version"];
 
 describe("The 'testpilot' Schema", function() {
   it("is recognized by Ping Centre", function() {
