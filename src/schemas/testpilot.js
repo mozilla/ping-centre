@@ -29,12 +29,7 @@ const schema = commonSchema.keys({
   firefox_version: Joi.string().required(),
   os_name: Joi.string().required(),
   os_version: Joi.string().required(),
-  locale: Joi.string().required(),
-
-  // The entire raw event sent to Telemetry, serialized as a JSON string.
-  // Allows other client data fields to be (slowly) queried in Redshift.
-  // Also allows the original data to be reprocessed later.
-  raw: Joi.string().required()
+  locale: Joi.string().required()
 });
 
 module.exports = schema;
