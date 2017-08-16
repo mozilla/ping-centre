@@ -53,7 +53,7 @@ class PingCentre {
     }
 
     return validatePromise.then(() => {
-      return fetch(this._pingEndpoint, {method: "POST", body: payload}).then(response => {
+      return fetch(this._pingEndpoint, {method: "POST", body: JSON.stringify(payload)}).then(response => {
         if (!response.ok) {
           throw new Error(`Ping failure with response code: ${response.status}`);
         } else {
