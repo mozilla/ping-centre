@@ -37,7 +37,9 @@ From there, the following code can be executed in any environment:
 const pc = new PingCentre("some_topic_foo", "some_cient_id_123");
 
 // create the payload
-const payload = makePayload();
+const payload = {
+  "event_type": "ping_session"
+};
 
 // send the payload asynchronously
 pc.sendPing(payload);
