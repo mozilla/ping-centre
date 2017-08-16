@@ -1,8 +1,10 @@
 /* global assert */
 "use strict";
 
+const Joi = require("joi-browser");
 const fetchMock = require("fetch-mock");
 const PingCentre = require("../../src/ping-centre");
+const commonSchema = require("../../src/schemas/commonSchema.js");
 
 const topic = "sample";
 let pingClient = new PingCentre(topic);
@@ -21,16 +23,18 @@ describe("Ping Centre Throws", function() {
   });
 });
 
-describe("Joi Handles Various Cases", function() {
+describe("Handling malformed data", function() {
   it("rejects undefined data", function(done) {
-    const promise = pingClient.sendPing();
-    promise.should.be.rejected.notify(done);
+    assert.throws(() => pingClient.sendPing());
+    done();
   });
   it("rejects if data is not an object", function(done) {
-    pingClient.sendPing(45).should.be.rejected.notify(done);
+    assert.throws(() => pingClient.sendPing(45));
+    done();
   });
   it("rejects if data is an empty object", function(done) {
-    pingClient.sendPing({}).should.be.rejected.notify(done);
+    assert.throws(() => pingClient.sendPing({}));
+    done();
   });
 });
 
@@ -41,9 +45,7 @@ describe("Ping Centre Common Properties", function() {
       event_type: event_type,
       value: true,
     }).then(result => {
-      assert.equal(JSON.parse(fetchMock.lastOptions("*").body).topic, topic, "topic exists in payload");
-      assert.isNotNull(JSON.parse(fetchMock.lastOptions("*").body).client_id, "client_id exists in payload");
-      assert.equal(JSON.parse(fetchMock.lastOptions("*").body).event_type, event_type, "event_type exists in payload");
+      Joi.validate(JSON.parse(fetchMock.lastOptions("*").body), commonSchema);
       done();
     });
   });
@@ -75,12 +77,6 @@ describe("Setting Global Fetch", function() {
     assert.equal(typeof platform_require, "function", "platform_require is now set");
     assert.equal(typeof fetch, "object");
     global.fetch = tmp;
-  });
-});
-
-describe("Validation handling", function() {
-  it("Invalid data is passed when validation is turned off", function(done) {
-    pingClient.sendPing({}, false).should.be.fulfilled.notify(done);
   });
 });
 
