@@ -41,9 +41,9 @@ describe("Ping Centre Common Properties", function() {
       event_type: event_type,
       value: true,
     }).then(result => {
-      assert.equal(fetchMock.lastOptions("*").body.topic, topic, "topic exists in payload");
-      assert.isNotNull(fetchMock.lastOptions("*").body.client_id, "client_id exists in payload");
-      assert.equal(fetchMock.lastOptions("*").body.event_type, event_type, "event_type exists in payload");
+      assert.equal(JSON.parse(fetchMock.lastOptions("*").body).topic, topic, "topic exists in payload");
+      assert.isNotNull(JSON.parse(fetchMock.lastOptions("*").body).client_id, "client_id exists in payload");
+      assert.equal(JSON.parse(fetchMock.lastOptions("*").body).event_type, event_type, "event_type exists in payload");
       done();
     });
   });
